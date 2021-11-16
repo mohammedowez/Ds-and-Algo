@@ -1,3 +1,7 @@
+
+// Next Greater element to left 
+
+
 class Solution
 {
     public:
