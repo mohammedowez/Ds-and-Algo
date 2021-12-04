@@ -1,19 +1,8 @@
-Example 1:
-
-Input: s = "lee(t(c)o)de)"
-Output: "lee(t(c)o)de"
-Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
-
-Example 2:
-
-Input: s = "a)b(c)d"
-Output: "ab(c)d"
-
-
 class Solution {
 public:
     string minRemoveToMakeValid(string s) 
     {
+       // left to right
         
         int c=0;
         for(int i=0;i<s.size();i++)
@@ -29,6 +18,7 @@ public:
             }
         } 
         
+        // right t0 left 
         c=0;
         for(int i=s.size()-1;i>=0;i--)
         {
