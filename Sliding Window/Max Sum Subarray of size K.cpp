@@ -1,3 +1,40 @@
+Input:
+N = 4, K = 4
+Arr = [100, 200, 300, 400]
+Output:
+1000
+Explanation:
+Arr1 + Arr2 + Arr3  
++ Arr4 =1000,
+which is maximum.
+
+
+
+class Solution{   
+public:
+    int maximumSumSubarray(int K, vector<int> &a , int N){
+        
+// sliding window 
+        int s=0;
+       for(int i=0;i<K;i++)
+        s=s+a[i];
+        
+        int maxi=s;
+        
+        for(int i=K;i<N;i++)
+        {
+            s=s+a[i]-a[i-K];
+            maxi=max(s,maxi);
+        }
+        
+        return maxi;
+        
+        // code here 
+    }
+};
+
+
+
 // { Driver Code Starts
 #include<bits/stdc++.h> 
 using namespace std; 
