@@ -8,7 +8,35 @@ Arr1 + Arr2 + Arr3
 + Arr4 =1000,
 which is maximum.
 
-
+int maximumSumSubarray(int k, vector<int> &arr , int N){
+        // code here 
+        
+        int i=0,j=0;
+        int sum=0;
+        
+        int ma=0;
+        while(i<N)
+        {
+            sum=sum+arr[i];
+            if(i-j+1<k)
+            {
+                i++;
+            } 
+            else if(i-j+1==k)
+            {
+                ma=max(ma,sum);
+                sum=sum-arr[j];
+                j++;
+                i++;
+            } 
+        } 
+        
+        return ma;
+    }
+    
+    
+    
+    
 
 class Solution{   
 public:
