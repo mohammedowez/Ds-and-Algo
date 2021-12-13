@@ -45,3 +45,34 @@ public:
         
     }
 };
+
+// Another solution
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+         int i=0,j=0,sum=0;
+        unordered_map<int,int> mp;
+        int maxi=0;
+        
+        
+        while(i<nums.size())
+        {
+            if(mp[nums[i]]==0)
+            {
+                mp[nums[i]]++;
+                sum=sum+nums[i];
+                
+                maxi=max(maxi,sum);
+                i++;
+            } 
+            else
+            {
+                mp[nums[j]]--;
+                sum=sum-nums[j];
+                j++;
+            }
+               
+        } 
+        return maxi;
+    }
+};
