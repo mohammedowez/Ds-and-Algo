@@ -21,45 +21,39 @@ distinct characters.
     // your code here
     
     int i=0,j=0;
-    int n=s.size();
-    int ma=0;
-    
-    
-    
     unordered_map<char,int> mp;
-    while(i<n)
+    int maxi=0;
+    while(i<s.size())
     {
-        
         mp[s[i]]++;
         if(mp.size()<k)
             i++;
-       else if(mp.size()==k)
-       {
-           
-           ma=max(ma,i-j+1);
-           
-           i++;
-       } 
-       else if(mp.size()>k)
-       {
-           
-           while(mp.size()>k)
-           {
-               mp[s[j]]--;
-               if(mp[s[j]]==0)
-               {
-                  mp.erase(s[j]);
-               }
-               j++;
-           } 
-           i++;
-       }
+        else if(mp.size()==k)
+        {
+            maxi=max(maxi,i-j+1);
+            i++;
+        } 
         
-    } 
-    
-    if(ma!=0)
-        return ma;
+        else if(mp.size()>k)
+        {
+            while(mp.size()>k)
+            {
+                mp[s[j]]--;
+                if(mp[s[j]]==0)
+                {
+                    mp.erase(s[j]);
+                } 
+                j++;
+            } 
+            i++;
+        }
+            
+        }
+        
+     if(maxi!=0)  
+        return maxi;
     return -1;
+    
     
     }
 };
