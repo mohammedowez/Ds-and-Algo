@@ -44,3 +44,36 @@ class Solution{
         
     }
 };
+
+
+// Another Solution 
+
+vector <int> countDistinct (int a[], int n, int k)
+    {
+        //code here.
+        
+        vector<int> v;
+        unordered_map<int,int> mp;
+        
+        int i=0,j=0;
+        for(int i=0;i<k;i++)
+            mp[a[i]]++;
+        
+        v.push_back(mp.size());
+        
+        for(int i=k;i<n;i++)
+        {
+            mp[a[j]]--;
+            mp[a[i]]++;
+            if(mp[a[j]]==0)
+            {
+                mp.erase(a[j]);
+            }
+            j++;
+            v.push_back(mp.size());
+        }
+        
+        return v;
+        
+        
+    }
