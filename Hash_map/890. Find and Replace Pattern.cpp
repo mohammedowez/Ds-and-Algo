@@ -46,3 +46,40 @@ public:
         
     }
 };
+class Solution {
+public:
+   static  bool solve(string &neword,string &pattern)
+    {
+         bool flag=true;
+           int f1[256]={0};
+            int f2[256]={0};
+            
+            for(int j=0;j<neword.size();j++)
+            {
+                if(f1[pattern[j]]!=f2[neword[j]])
+                   return false;
+                  
+                f1[pattern[j]]=j+1;
+                f2[neword[j]]=j+1;
+               
+                    
+            }
+        
+        return true;
+    }
+    
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        
+        vector<string> res;
+        
+        for(auto &neword:words)
+        {
+            if(solve(neword,pattern))
+                res.emplace_back(neword);
+            
+        }
+        
+        return res;
+        
+    }
+};
