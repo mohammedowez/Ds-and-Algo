@@ -8,13 +8,14 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
+class Solution 
+{
 public:
     ListNode* swapNodes(ListNode* head, int k) 
     {
         
-        
         vector<ListNode*> v;
+        
         ListNode *curr=head;
         
         while(curr!=NULL)
@@ -22,14 +23,17 @@ public:
             v.push_back(curr);
             curr=curr->next;
         }
+        for(auto i:v)
+                cout<<i->val<<" ";
+        cout<<endl;
+        swap(v[k-1]->val ,v[v.size()-k]->val);
         
-        int temp=v[k-1]->val;
-        int end=v[v.size()-k]->val;
-        v[v.size()-k]->val=temp;
-        v[k-1]->val=end;
+        for(auto i:v)
+                cout<<i->val<<" ";
         
         return head;
         
+    
         
     }
 };
