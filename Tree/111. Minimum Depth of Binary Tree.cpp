@@ -14,3 +14,42 @@ public:
 
 
 // bfs
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root==NULL)
+            return 0;
+        
+        int cnt=1;
+        
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while(!q.empty())
+        {
+            
+            int n=q.size();
+            
+            for(int i=0;i<n;i++)
+            {
+                TreeNode *curr=q.front();
+                    q.pop();
+             
+                if(curr->left==NULL && curr->right==NULL)
+                    return cnt;
+                
+                if(curr->left)
+                    q.push(curr->left);
+                
+                if(curr->right)
+                    q.push(curr->right);
+                
+            } 
+            
+            
+                cnt++;
+        } 
+        return cnt;
+        
+    }
+};
