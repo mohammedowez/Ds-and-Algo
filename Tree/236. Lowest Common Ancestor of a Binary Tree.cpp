@@ -54,3 +54,30 @@ public:
         return ans;
     }
 };
+// Recursion
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
+    {
+        if(!root)
+            return NULL;
+//         If root is itself one of the node
+        if(root==p or root==q)
+            return root;
+//         Traverse the left of current subtree 
+        TreeNode* left=lowestCommonAncestor(root->left,p,q);
+//         Traverse the right of current subtree
+        TreeNode* right=lowestCommonAncestor(root->right,p,q);
+//         Both the nodes exist under current subtree
+        if(left and right)
+            return root;
+//         Both the nodes don't exist under current subtree
+        if(!left and !right)
+            return NULL;
+//         One node is present in right of current subtree
+        if(left==NULL)
+            return right;
+//         One node is present in left of current subtree
+        return left;
+    }
+};
