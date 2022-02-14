@@ -110,3 +110,58 @@ public:
 };
 
 
+// 3 appraoch
+class Solution {
+public:
+    
+    
+    void solve(int i,int t,int s,vector<int> v,vector<int> &f,
+              vector<vector<int>> &ans)
+    {
+        
+        if(s>t)
+            return;
+        
+        if(s==t)
+        {
+            ans.push_back(v);
+            return;
+        } 
+        
+        for(;i<f.size();i++)
+        {
+            s=s+f[i];
+            v.push_back(f[i]);
+            solve(i,t,s,v,f,ans);
+            
+            s=s-f[i];
+            v.pop_back();
+            
+        }
+        
+        
+    }
+    
+    
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, 
+                                       int target) {
+        ios_base::sync_with_stdio(0),cin.tie(0);
+        
+        
+        
+        int s=0;
+        vector<int> v;
+        vector<vector<int>> ans;
+        
+        if(candidates.size()==0)
+            return ans;
+        
+        solve(0,target,s,v,candidates,ans);
+        
+        
+        return ans;
+    }
+};
+
+
