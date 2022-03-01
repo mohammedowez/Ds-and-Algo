@@ -1,3 +1,20 @@
+Example 1 :
+
+Input : 
+               1
+             /   \ 
+           2       3
+         /   \       \    
+        4     5       2     
+                     /  \    
+                    4    5
+Output : 1
+Explanation : 
+    2     
+  /   \    
+ 4     5
+is the duplicate sub-tree.
+
 class Solution 
 {
   public:
