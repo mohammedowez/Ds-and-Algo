@@ -12,7 +12,7 @@ Output: 12
 Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
 Total amount you can rob = 2 + 9 + 1 = 12.
 
-
+// Top Down --> Recursion
 class Solution {
 public:
     
@@ -35,5 +35,36 @@ public:
         vector<int> dp(nums.size(),-1);
         
         return robHelper(nums,0,dp);
+    }
+};
+
+
+// Bottom Up --> Tabulaion
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        
+        int n=nums.size();
+        
+        if(n==0)
+            return 0;
+        
+        if(n==1)
+            return nums[0];
+        
+        if(n==2)
+            return max(nums[0],nums[1]);
+        
+        int dp[n+1];
+        
+        int prev=nums[0];
+        dp[1]=max(nums[0],nums[1]);
+        
+        for(int i=2;i<n;i++)
+        {
+            dp[i]=max(dp[i-2]+nums[i],dp[i-1]);
+        } 
+        
+        return dp[n-1];
     }
 };
