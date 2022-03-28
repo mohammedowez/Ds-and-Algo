@@ -34,3 +34,35 @@ public:
         return t[n][sum];
     }
 };
+
+
+class Solution {
+public:
+    int solve(vector<int> &num, int T, int idx, vector<vector<int>> &dp)
+    {
+        if(idx == 0)
+        {
+            if(T%num[0] == 0) 
+                return T/num[0];
+            else 
+                return 1e9;
+        }
+        if(dp[idx][T] != -1) 
+                return dp[idx][T];
+        int not_take =  solve(num, T, idx-1, dp);
+        int take = 1e9;
+        if(num[idx] <= T)
+            take = 1 + solve(num, T-num[idx], idx, dp);
+        
+        return dp[idx][T] = min(take, not_take);
+    }
+    int coinChange(vector<int> &num, int x)
+    {
+        // Write your code here.
+        int n = num.size();
+        vector<vector<int>> dp(n+1, vector<int>(x+1, -1));
+        int ans = solve(num, x, n-1, dp);
+        if(ans >= 1e9) return -1;
+        else return ans;
+    }
+};
