@@ -8,11 +8,13 @@ class Solution {
         dfsvis[node]=1;
         for(auto it: adj[node])
         {
+          // if it is not visited then call dfs 
             if(vis[it]==0)
             {
                 if(cycledfs(it,adj,vis,dfsvis))
                     return 1;
             }
+          // if the path is visited the the graph is cyclic
              else if(dfsvis[it]) 
                 return true;
         } 
