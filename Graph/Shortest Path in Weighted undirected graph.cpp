@@ -7,7 +7,91 @@ Output:
 Explaination:
 Shortest path from 1 to n is by the path 1 4 3 5
 
+// solution -1
+    
+    class Solution {
+  public:
+    vector<int> shortestPath(int n, int m, vector<vector<int>>& edges) {
+        // dijkstra algorithm
+        // creating the adjacency list
+        
+        vector<vector<pair<int,int>>> adj(n+1);
+        for(auto it : edges){
+            adj[it[0]].push_back({it[1],it[2]});
+            adj[it[1]].push_back({it[0],it[2]});
+        }
+        
+        // implementing the dijkstra algorithm
+        
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+        
+        int distance[n+1];
+        int parent[n+1];
+        
+        // marking the distances to be infinity
+        
+        for(int i=0;i<n+1;i++){
+            distance[i]=INT_MAX;
+        }
+        
+        // marking the parent to be itself at first;
+        
+        for(int i=1;i<n+1;i++){
+            parent[i]=i;
+        }
+        
+        // implementing dijkstra algorithm
+        
+        
+        distance[1]=0;
+        pq.push({0,1});
+        
+        while(!pq.empty()){
+            int dist = pq.top().first;
+            int node = pq.top().second;
+            pq.pop();
+            
+            for(auto u : adj[node]){
+                int edgeWeight = u.second;
+                int adjNode = u.first;
+                
+                if(dist+edgeWeight<distance[adjNode]){
+                    distance[adjNode] = dist+edgeWeight;
+                    pq.push({distance[adjNode],adjNode});
+                    parent[adjNode] = node;
+                }
+            }
+        }
+        
+        vector<int> path;
+        
+        // jo destination hai waha tak ka shortest distance calculate nhi hua h
+        // mtlb ki wo connected nhi h
+        
+        
+        if(distance[n]==INT_MAX){
+            path.push_back(-1);
+            return path;
+        }
+        
+        int i = n;
+        while (i != 1) {
+        path.push_back(i);
+         i = parent[i];
+         }
+        path.push_back(1);
+        reverse(path.begin(), path.end());
 
+        return path;
+        
+        
+    }
+        
+    
+};
+
+
+// solution -2
 #include <bits/stdc++.h>
 using namespace std;
 
